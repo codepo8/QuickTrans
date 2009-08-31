@@ -1,0 +1,9 @@
+QuickTrans is a translation widget using the W3C widgets spec: http://www.w3.org/TR/widgets-apis/ and using the Vodafone widget SDK http://www.betavine.net/bvportal/resources/widgets/research
+
+If you want to try it out, you need Opera installed and simply click on the .wgt file in the dist folder.
+
+The widget uses YQL and the Google Translation API http://code.google.com/apis/ajaxlanguage/documentation/#Translate 
+
+Enjoy
+
+Chris
