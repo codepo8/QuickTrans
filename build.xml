@@ -1,0 +1,27 @@
+<project name="QuickTrans" default="dist" basedir=".">
+
+  <description>
+    Generates the widget binaries for Opera
+  </description>
+
+  <property name="dist" location="dist"/>
+  <property name="src" location="src"/>
+
+  <target name="clean">
+    <delete dir="${dist}"/>
+  </target>
+
+  <target name="dist.opera">
+    <mkdir dir="${dist}"/>
+    <zip zipfile="${dist}/${ant.project.name}.wgt">
+      <fileset dir="${src}">
+        <include name="**/*"/>
+        <exclude name="**/gadget*"/>
+      </fileset>
+    </zip>
+  </target>
+
+  <target name="dist" depends="dist.opera"/>
+
+</project>
+

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+  <title>QuickTrans</title>
+  <style type="text/css">
+    *{margin:0;padding:0;font-size:13px;}
+    body{
+      background:#fff;
+      color:#000;
+      font-family:verdana,helvetica,arial,sans-serif;
+    }
+    form{background:#69c;padding:1em;margin:1em 0;}
+    input{width:15em;}
+    form p{padding-bottom:10px;}
+    label{font-weight:bold;padding-right:1em;}
+    select{margin-right:1em;}
+    input[type='submit']{width:4em;background:#ff9;border:1px solid #363;}
+    #output p{font-size:16px;background:#9cf;padding:10px;border-bottom:1px solid #fff;} 
+    #doc{padding:5px;}
+    h1{color:#69c;font-size:16px;padding:0 5px;}
+    h1 span{color:#369;font-size:16px;}
+    .by{margin-top:3em;font-size:8px;}
+  </style>
+</head>
+<body>
+<div id="doc" class="yui-t7">
+  <div id="hd" role="banner"><h1>Quick<span>Trans</span></h1></div>
+  <div id="bd" role="main">
+    <form action="#" id="transform">
+      <div><p><label for="trans">Translate:</label><input type="text" id="trans"></p><p><label for="tolang">to:</label><select id="tolang"><option value="en">English</option><option value="de">German</option><option value="fr">French</option>
+<option value="cn">Chinese</option>
+<option value="cr">Croatian</option>
+<option value="cz">Czech</option>
+<option value="dk">Danish</option>
+<option value="nl">Dutch</option>
+<option value="fi">Finnish</option>
+<option value="fr">French</option>
+<option value="he">Hebrew</option>
+<option value="hi">Hindi</option>
+<option value="hu">Hungarian</option>
+<option value="it">Italian</option>
+<option value="no">Norwegian</option>
+<option value="pl">Polish</option>
+<option value="pr">Portuguese</option>
+<option value="ro">Romanian</option>
+<option value="ru">Russian</option>
+<option value="es">Spanish</option>
+<option value="se">Swedish</option>
+<option value="tr">Turkish</option>
+<option value="uk">Ukrainian</option>
+        
+        
+        </select><input type="submit" value="Go"></p></div>
+      <div id="output"></div>
+    </form>
+    <div id="help"><h2>Usage</h2><p>QuickTrans is a simple translation application. Simply enter the word or sentence you want translated into the Text field above, choose the language to translate to and hit the Go button.</p><p class="by">Quicktrans was written by Christian Heilmann and uses YQL and the Google translation API.</p></div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  var out =  document.getElementById('output');
+  function get(){
+    var old = document.getElementById('gettrans');
+    if(old){
+      old.parentNode.removeChild(old);
+    }
+    var what = document.getElementById('trans').value;
+    var to = document.getElementById('tolang');
+    to = to.options[to.selectedIndex].value;  url='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20google.translate%20where%20q%3D%22'+encodeURIComponent(what)+'%22%20and%20target%3D%22'+to+'%22%3B&format=json&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=trans';
+    var s = document.createElement('script');
+    s.setAttribute('id','gettrans');
+    s.setAttribute('src',url);
+    document.getElementsByTagName('head')[0].appendChild(s);
+    out.innerHTML = '<img src="images/loading.gif" alt="">Loading...';
+    return false;
+  }
+  function trans(o){
+    if(o.query.results!==null){
+      if(typeof o.query.results.translatedText==='string'){
+       out.innerHTML = '<p>'+o.query.results.translatedText+'</p>';
+      } else {
+        out.innerHTML = '<p>Sorry, I could not find a translation</p>';
+      }
+    } else{
+      out.innerHTML = '<p>Could not find a translation for this, sorry.</p>';
+    }
+  }
+  document.getElementById('transform').onsubmit = get;
+</script>
+</body>
+</html>

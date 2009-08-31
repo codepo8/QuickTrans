@@ -1,0 +1,12 @@
+<widget id="quicktrans" dockable="yes">
+  <widgetname>QuickTrans</widgetname>
+  <description>QuickTrans is a simple translation widget.</description>
+  <icon>images/quicktrans.png</icon>
+  <width>320</width>
+  <height>240</height>
+  <author>
+    <name>Christian Heilmann</name>
+    <link>http://wait-till-i.com</link>
+    <email>onlinetoolsorg@gmail.com</email>
+  </author>
+</widget>
