@@ -67,7 +67,8 @@
     }
     var what = document.getElementById('trans').value;
     var to = document.getElementById('tolang');
-    to = to.options[to.selectedIndex].value;  url='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20google.translate%20where%20q%3D%22'+encodeURIComponent(what)+'%22%20and%20target%3D%22'+to+'%22%3B&format=json&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=trans';
+    to = to.options[to.selectedIndex].value;  
+    var url='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20google.translate%20where%20q%3D%22'+encodeURIComponent(what)+'%22%20and%20target%3D%22'+to+'%22%3B&format=json&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=trans';
     var s = document.createElement('script');
     s.setAttribute('id','gettrans');
     s.setAttribute('src',url);
